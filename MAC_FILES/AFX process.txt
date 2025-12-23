@@ -1,0 +1,23 @@
+
+
+cd /Users/g/Downloads/000_LETS_GO-4/AFX/MAC/16.0v6W3
+
+# 2. Create build directory
+mkdir build
+cd build
+
+# 3. Configure (CMake will auto-detect your architecture)
+cmake ..
+
+# 4. Build
+cmake --build . --config Release
+
+# 5. Install to ~/.nuke
+cmake --install .
+
+
+
+/////
+
+
+/Applications/Nuke16.0v6/Nuke16.0v6.app/Contents/MacOS/Nuke16.0
