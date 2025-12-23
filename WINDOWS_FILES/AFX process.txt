@@ -1,0 +1,26 @@
+
+
+D:
+
+cd D:\AFX_AGAIN\WIN\16.0v6
+
+
+REM Set CUDA paths (equivalent to your Linux export commands)
+set PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9\bin;%PATH%
+set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9
+
+REM Verify
+where nvcc
+echo %CUDA_PATH%
+
+rmdir /s /q build
+mkdir build
+cd build
+
+cmake .. -G "Visual Studio 17 2022" -A x64 ^
+  -DCMAKE_INSTALL_PREFIX=%USERPROFILE%/.nuke ^
+  -DCMAKE_PREFIX_PATH="C:/Program Files/Nuke16.0v6" ^
+  -DNUKE_INCLUDE_DIR="C:/Program Files/Nuke16.0v6/include/DDImage" ^
+  -DIpp_INCLUDE_DIR="C:/Program Files (x86)/Intel/oneAPI/ipp/2022.1/include/ipp" ^
+  -DIpp_LIBRARIES="C:/Program Files (x86)/Intel/oneAPI/ipp/2022.1/lib/ippi.lib";"C:/Program Files (x86)/Intel/oneAPI/ipp/2022.1/lib/ippcore.lib"
+cmake --build . --config Release
