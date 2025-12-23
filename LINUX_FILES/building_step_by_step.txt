@@ -1,0 +1,20 @@
+
+export PATH=/usr/local/cuda-12.1/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
+
+# Clean rebuild
+rm -rf build && mkdir build && cd build
+
+cmake .. \
+  -DNUKE_VERSION=16.0v6 \
+  -DCMAKE_INSTALL_PREFIX=/home/pm/.nuke/afx-nuke-plugins \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DIpp_INCLUDE_DIR=/opt/intel/oneapi/ipp/2022.0/include/ipp \
+  -DIpp_LIBRARIES="/opt/intel/oneapi/ipp/2022.0/lib/libippcore.a;/opt/intel/oneapi/ipp/2022.0/lib/libippi.a" \
+  -DIpp_LIBRARY_DIR=/opt/intel/oneapi/ipp/2022.0/lib \
+  -DBOOST_ROOT=/opt/boost_1_87_0_static \
+  -DBOOST_LIBRARYDIR=/opt/boost_1_87_0_static/lib \
+  -DBoost_NO_BOOST_CMAKE=ON
+
+make -j8
+make install
